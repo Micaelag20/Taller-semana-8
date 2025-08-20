@@ -17,12 +17,22 @@ function showData(dataArray) {
     container.innerHTML += `<p> ${item.name} ${item.lastname} </p>`; // Se concatena cada párrafo de la manera que queremos mostrarlo al innerHTML del contenedor
   }
 }
-fetch(DATA_URL)
+// Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+fetch("json/data.json")
 .then(response => {
-     if (!response.ok)
+     if (!response.ok) {
+      throw new Error("Ha habido un error al cargar")
+     }
        return response.json();
+     })
+     .then(data => {
+      const container = document.getElementById("container");
+      data.students.forEach(student => {
+        const p = document.createElement("p");
+        p.textContent = `${student.name} ${student.lastname}`;
+        container.appendChild(p);
+            })
      })
 .then(data => {
   showData(data);
 })
-// Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
