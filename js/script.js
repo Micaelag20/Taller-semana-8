@@ -17,5 +17,13 @@ function showData(dataArray) {
     container.innerHTML += `<p> ${item.name} ${item.lastname} </p>`; // Se concatena cada párrafo de la manera que queremos mostrarlo al innerHTML del contenedor
   }
 }
-
+fetch(DATA_URL)
+.then(response => { 
+     if (!response.ok){
+       return response.json();
+     })
+.then(data => {
+  showData(data);
+  {)
+     )
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
